@@ -1,0 +1,32 @@
+chrome Extensions:colorzilla and imageAssistance image batch downloader
+
+>>>>>>>>>>>>>>>>>Header>>>>>>>>>>>>>>>>>
+https://pngimg.com/image/61232 : link to download amazon logo
+
+https://react-icons.github.io/react-icons/ : link to react icons after installing to package.json
+
+>>>>>>>>>>>>>>>>API for carasoul,products>>>>>>>>>>>>>
+
+https://fakestoreapi.com : api to fetch images of each category
+
+https://mui.com/material-ui/react-rating/ : for Rating
+
+http://numeraljs.com/ : formating our price
+
+
+
+
+
+
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>github>>>>>>>>>>>>>>>
+git init
+git remote add origin https://github.com/meti21/Amazon_Clone.git
+git add .
+git commit -m ""
+git push origin main
+git pull --rebase origin main
+
