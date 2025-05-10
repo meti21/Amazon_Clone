@@ -65,6 +65,68 @@
 
 
 
+.product__flexed .button:hover {
+    background-color: var(--primary-shade) !important;
+  }
+  
+  /* Flex Layout (for special flex version) */
+  .product__flexed {
+    display: flex;
+    gap: 40px;
+    width: 90%;
+    height: 50vh;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 25px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    background: white;
+  }
+  
+  .product__flexed h3 {
+    padding: 20px 0px;
+  }
+  
+  /* .product__flexed a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 300px;
+  } */
+  
+  /* .product__flexed .button {
+    display: block ;
+    width: 200px !important;
+    margin-top: 20px !important;
+    background-color: var(--primary-color) !important;
+    border: none !important;
+    font-weight: 600 !important;
+    padding: 10px 0 !important;
+  } */
+   .product__flexed .button{
+    display: block;
+    position: static;
+    width: 150px;
+    margin-right: 40px;
+   }
+
+  .product__flexed img {
+    width: 300px !important;
+    max-width: 300px;
+    height: auto;
+    /* height: 250px; */
+ 
+  }
+  
+  /* This targets the inner details div in flex layout */
+  /* .product__flexed > div {
+  flex: 1;
+    display: flex;
+    flex-direction: column;
+  } */
+
+
 /* Responsive Design - Single Breakpoint */
 @media (max-width: 768px) {
     .card__container {
@@ -83,5 +145,8 @@
         opacity: 1;
         bottom: unset; 
     }
-
+    .product__flexed{
+        display: flex;
+        flex-direction: column;
+    }
 }

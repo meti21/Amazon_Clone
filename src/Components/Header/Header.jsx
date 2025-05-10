@@ -2,23 +2,33 @@ import React from 'react'
 import styles from './Header.module.css'
 import LowerHeader from './LowerHeader';
 
+import { Link } from 'react-router-dom';
+import {useContext} from 'react'
+
 import { BsSearch } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
 import { SlLocationPin } from "react-icons/sl";
+import { DataContext } from '../DataProvider/DataProvider';
 
 function Header() {
+
+  const [{basket},dispatch] = useContext(DataContext)
+  // distructure the state and we can get the vallue of items in the basket
+  // console.log(basket)
+  // console.log(basket.length)
+
   return (
-    <>
+    <section className={styles.fixed}>
       <section>
         <div className={styles.header__container}>
           {/* logo section*/}
           <div className={styles.logo__container}>
-            <a href="">
+            <Link to="/">
               <img
                 src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
                 alt="amazon logo"
               />
-            </a>
+            </Link>
 
             {/* delivery */}
             <div className={styles.delivery}>
@@ -45,7 +55,7 @@ function Header() {
 
           {/*right side link  */}
           <div className={styles.order__container}>
-            <a href="" className={styles.language}>
+            <Link to="" className={styles.language}>
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Canada_%28Pantone%29.svg/330px-Flag_of_Canada_%28Pantone%29.svg.png"
                 alt=""
@@ -53,35 +63,35 @@ function Header() {
               <select>
                 <option value="">EN</option>
               </select>
-            </a>
+            </Link>
 
             {/* three components */}
-            <a href="">
+            <Link to="/auth">
               <div>
                 <p>Sign In</p>
                 <span>Account & Lists</span>
               </div>
-            </a>
+            </Link>
 
             {/* orders */}
-            <a href="">
+            <Link to="/orders">
               <div>
                 <p>returns</p>
                 <span>& Orders</span>
               </div>
-            </a>
+            </Link>
 
             {/* cart */}
-            <a href="" className={styles.cart}>
+            <Link to="/cart" className={styles.cart}>
               <BiCart />
-              <span> 0 </span>
-            </a>
+              <span> {basket.length} </span>
+            </Link>
           </div>
         </div>
       </section>
 
-      <LowerHeader/>
-    </>
+      <LowerHeader />
+    </section>
   );
 }
 

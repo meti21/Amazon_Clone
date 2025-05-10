@@ -15,3 +15,9 @@ npm i axios
 npm install @mui/material @mui/styled-engine-sc styled-components
 
 npm install numeral
+
+# Router
+npm i react-router-dom
+
+# spinners
+npm install react-spinners --save
