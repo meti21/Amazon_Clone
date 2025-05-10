@@ -42,7 +42,7 @@ function Product() {
       ) : (
         <section className={styles.products_container}>
           {products?.map((singleproduct) => (
-            <ProductCard key={singleproduct.id} EachProduct={singleproduct} />
+            <ProductCard key={singleproduct.id} EachProduct={singleproduct} addButton={true}/>
           ))}
         </section>
       )}

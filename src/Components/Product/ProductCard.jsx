@@ -7,14 +7,13 @@ import { DataContext } from "../DataProvider/DataProvider";
 
 import styles from './Product.module.css'
 
-function ProductCard({ EachProduct, flex, renderDesc }) {
+function ProductCard({ EachProduct, flex, renderDesc, addButton }) {
   const { image, title, id, rating, price, description } = EachProduct;
 
-  const [state,dispatch] = useContext(DataContext)
+  const [state, dispatch] = useContext(DataContext);
   // console.log(state)
 
-
-  const addToCart = ()=>{
+  const addToCart = () => {
     dispatch({
       // type comes from action.type.js
       type: Type.ADD_TO_BASKET_KEY,
@@ -27,8 +26,7 @@ function ProductCard({ EachProduct, flex, renderDesc }) {
         description,
       },
     });
-  }
-
+  };
 
   return (
     <div
@@ -44,7 +42,7 @@ function ProductCard({ EachProduct, flex, renderDesc }) {
         <h3>{title}</h3>
 
         {renderDesc && <div>{description}</div>}
-        
+
         <div className={styles.rating}>
           {/* rating */}
           <Rating value={rating?.rate} precision={0.1} readOnly />
@@ -58,7 +56,11 @@ function ProductCard({ EachProduct, flex, renderDesc }) {
           <CurrencyFormat amount={price} />
         </div>
 
-        <button className={styles.button} onClick={addToCart}>add to cart</button>
+        {addButton && (
+          <button className={styles.button} onClick={addToCart}>
+            add to cart
+          </button>
+        )}
       </div>
     </div>
   );

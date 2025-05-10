@@ -46,6 +46,7 @@ function Results() {
               <ProductCard
                 key={currentProduct.id}
                 EachProduct={currentProduct}
+                addButton={true}
               />
             ))}
           </div>

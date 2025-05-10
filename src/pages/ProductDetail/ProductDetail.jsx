@@ -32,7 +32,7 @@ function ProductDetail() {
     <LayOut>
       {/* we're not just writing HTML here — we're using JavaScript logic (a ternary operator) to conditionally render one of two components so we have to put them in {} */}
       
-      {isLoading ? <Loader /> : <ProductCard EachProduct={product} flex={true} renderDesc={true}/>}
+      {isLoading ? <Loader /> : <ProductCard EachProduct={product} flex={true} renderDesc={true} addButton={true}/>}
     </LayOut>
   );
 }

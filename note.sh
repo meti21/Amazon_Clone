@@ -3,6 +3,8 @@ npm create vite@latest
 npm install
 npm run dev
 
+npm install react-bootstrap
+
 # Header
 npm install react-icons --save
 
