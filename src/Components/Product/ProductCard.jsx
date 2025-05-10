@@ -17,7 +17,7 @@ function ProductCard({ EachProduct, flex, renderDesc }) {
   const addToCart = ()=>{
     dispatch({
       // type comes from action.type.js
-      type: Type.ADD_TO_BASKET,
+      type: Type.ADD_TO_BASKET_KEY,
       item: {
         image,
         title,

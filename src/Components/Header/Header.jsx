@@ -13,6 +13,7 @@ import { DataContext } from '../DataProvider/DataProvider';
 function Header() {
 
   const [{basket},dispatch] = useContext(DataContext)
+  //instead of state.basket we can say {basket}
   // distructure the state and we can get the vallue of items in the basket
   // console.log(basket)
   // console.log(basket.length)
