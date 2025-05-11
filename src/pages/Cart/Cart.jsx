@@ -5,6 +5,7 @@ import ProductCard from '../../Components/Product/ProductCard';
 import CurrencyFormat from '../../Components/CurrencyFormat/CurrencyFormat';
 import { Link } from 'react-router-dom';
 
+
 import styles from "./Cart.module.css";
 import { Alert } from 'react-bootstrap';
 
@@ -12,7 +13,7 @@ function Cart() {
   const [{basket,user}, dispatch] = useContext(DataContext)
 
   const total = basket.reduce((amount,item)=> {
-    return item.price + amount
+    return item.price * item.amount + amount
   },0)
 
   return (
