@@ -11,12 +11,17 @@ import { SlLocationPin } from "react-icons/sl";
 import { DataContext } from '../DataProvider/DataProvider';
 
 function Header() {
-
-  const [{basket},dispatch] = useContext(DataContext)
+  const [{ basket }, dispatch] = useContext(DataContext);
   //instead of state.basket we can say {basket}
-  // distructure the state and we can get the vallue of items in the basket
+  // distructure the state and we can get the value of items in the basket
   // console.log(basket)
-  // console.log(basket.length)
+  // console.log(basket.length)  //how many different products are in the cart
+  //this doesnt consider the quantity of each item but rather
+
+  const totalItems = basket?.reduce((amount, item) => {
+    return item.amount + amount;
+  }, 0);
+  // console.log(totalItems)  //how many total items (including multiples) are in the cart
 
   return (
     <section className={styles.fixed}>
@@ -85,7 +90,7 @@ function Header() {
             {/* cart */}
             <Link to="/cart" className={styles.cart}>
               <BiCart />
-              <span> {basket.length} </span>
+              <span> {totalItems} </span>
             </Link>
           </div>
         </div>
