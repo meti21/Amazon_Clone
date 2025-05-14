@@ -1,12 +1,32 @@
-# React + Vite
+# 🛒 Amazon Clone (Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fully responsive Amazon clone built with **React**. This is the frontend-only version of the app, mimicking core functionalities like product browsing, search, cart management, and user interface similar to Amazon.
 
-Currently, two official plugins are available:
+## 📸 Screenshots
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Home Page](./screenshots/home.png)
+![Product Page](./screenshots/product.png)
+![Cart Page](./screenshots/cart.png)
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- ✅ Browse products
+- 🔍 Search functionality
+- 🛒 Add to Cart / Remove from Cart
+- 💰 View subtotal in cart
+- 📱 Fully responsive layout (mobile-first)
+- 📦 Simulated product data (JSON or API)
+- 🔄 React Router for page navigation
+
+> Authentication, payment, and backend integration can be added separately.
+
+---
+
+## 🛠 Tech Stack
+
+- **Frontend:** React, JavaScript, React Router
+- **Styling:** Tailwind CSS / CSS Modules / Styled-Components *(adjust based on your setup)*
+- **State Management:** useState / useReducer / Redux *(mention what you use)*
+- **Data:** Static JSON or integrated API
+
+---
