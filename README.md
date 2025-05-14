@@ -72,3 +72,26 @@ You can personalize or extend the app easily:
 - Replace styling with your own CSS or framework.  
 - Connect to a backend (e.g., Firebase, Express, etc.).  
 - Add features like product filtering, user reviews, or wishlists.  
+
+
+## 🚧 Future Improvements
+
+- 🔐 Add user authentication (with Firebase, Auth0, or custom JWT)  
+- 💳 Integrate payment gateway (Stripe or PayPal)  
+- 🗃 Connect to a backend (Node.js/Express + MongoDB/PostgreSQL)  
+- 📝 Add product ratings and customer reviews  
+- 🌐 Enable internationalization (i18n)  
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+To contribute:
+
+1. Fork the repository  
+2. Create your feature branch: `git checkout -b feature/YourFeature`  
+3. Commit your changes: `git commit -m 'Add your feature'`  
+4. Push to your branch: `git push origin feature/YourFeature`  
+5. Open a pull request  
