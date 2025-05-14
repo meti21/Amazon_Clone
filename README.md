@@ -30,3 +30,45 @@ A fully responsive Amazon clone built with **React**. This is the frontend-only 
 - **Data:** Static JSON or integrated API
 
 ---
+## 📦 Installation
+
+Follow the steps below to get the project running locally:
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-username/amazon-clone.git
+cd amazon-clone
+
+# 2. Install dependencies
+npm install
+
+# 3. Start the development server
+npm start
+
+---
+
+## 📜 Available Scripts
+
+In the project directory, you can run:
+
+```bash
+# Run the app in development mode
+npm start
+
+# Build the app for production
+npm run build
+
+# Launch the test runner
+npm test
+
+# Lint the codebase (if configured)
+npm run lint
+
+## 🧩 Customization
+
+You can personalize or extend the app easily:
+
+- Update product data in `src/data/products.js` or your preferred structure.  
+- Replace styling with your own CSS or framework.  
+- Connect to a backend (e.g., Firebase, Express, etc.).  
+- Add features like product filtering, user reviews, or wishlists.  
