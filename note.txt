@@ -1,3 +1,5 @@
+*******************FRONTEND**************
+
 chrome Extensions:colorzilla and imageAssistance image batch downloader
 
 >>>>>>>>>>>>>>>>>Header>>>>>>>>>>>>>>>>>
@@ -18,14 +20,6 @@ http://numeraljs.com/ : formating our price
 https://react-icons.github.io/react-icons/search/#q=    : react spinner official site.click yarn add spinners to get npm cpmmand for install
 
 
-
-
-
-
-
-
-
-
 >>>>>>>>>>>>>>>>>>>>github>>>>>>>>>>>>>>>
 git init
 git remote add origin https://github.com/meti21/Amazon_Clone.git
@@ -34,3 +28,6 @@ git commit -m ""
 git push origin main
 git pull --rebase origin main
 
+*******************BackEND***************
+In your firebase
+    -> Authentication -> get started -> sign in method -> email and password -> enable email and password -> save
