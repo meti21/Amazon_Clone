@@ -9,9 +9,10 @@ import { BsSearch } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
 import { SlLocationPin } from "react-icons/sl";
 import { DataContext } from '../DataProvider/DataProvider';
+import {auth} from "../../Utility/firebase"
 
 function Header() {
-  const [{ basket }, dispatch] = useContext(DataContext);
+  const [{ user,basket }, dispatch] = useContext(DataContext);
   //instead of state.basket we can say {basket}
   // distructure the state and we can get the value of items in the basket
   // console.log(basket)
@@ -72,10 +73,19 @@ function Header() {
             </Link>
 
             {/* three components */}
-            <Link to="/auth">
+            <Link to={!user && "/auth"}>
               <div>
-                <p>Sign In</p>
-                <span>Account & Lists</span>
+                {user ? (
+                  <>
+                    <p>Hello {user?.email?.split("@")[0]}</p>
+                    <span onClick={() => auth.signOut()}>Sign out</span>
+                  </>
+                ) : (
+                  <>
+                    <p>Sign In</p>
+                    <span>Account & Lists</span>
+                  </>
+                )}
               </div>
             </Link>
 
