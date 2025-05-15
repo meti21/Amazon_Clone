@@ -32,5 +32,7 @@ git pull --rebase origin main
 Firebase setup used in the videos mixes two different versions of the Firebase SDK: the modular SDK (v9+) and the namespaced/compat SDK (v8-style). This is technically valid with the compat layer, but it's not the most modern or recommended setup for new projects.so i changed it to modular SDK (v9+)
 
 
-In your firebase
+Enabling firbase Authentication 
     -> Authentication -> get started -> sign in method -> email and password -> enable email and password -> save
+
+Authentication functionality

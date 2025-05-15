@@ -4,6 +4,7 @@ import { Type } from "./action.type";
 
 export const initialState = {
   basket: [],
+  user: null
 };
 
 export const reducer = (state, action) => {
@@ -42,8 +43,15 @@ export const reducer = (state, action) => {
             newBasket.splice(index, 1);
           }
       }
-
       return { ...state, basket: newBasket };
+    
+    //for Auth
+    case Type.SET_USER_KEY:
+      return{
+        ...state,
+        user:action.user
+      }
+
 
     default:
       return state;
