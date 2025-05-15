@@ -1,4 +1,4 @@
-
+// firebase modular SDK (v9+)
 // TODO: Add SDKs for Firebase products that you want to use
 // we import those bcuz we need those services.but the imports that we need might differ from time to time.so check the current set up for imports
 import { initializeApp } from "firebase/app";
