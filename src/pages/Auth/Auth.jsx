@@ -2,10 +2,11 @@ import styles from './Auth.module.css'
 
 import { Type } from '../../Utility/action.type';
 import { useState,useContext} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import { auth } from '../../Utility/firebase';
 import {signInWithEmailAndPassword, createUserWithEmailAndPassword} from "firebase/auth"
 import {DataContext} from '../../Components/DataProvider/DataProvider'
+import { ClipLoader } from 'react-spinners';
 import logo from '../../assets/logo.webp'
 
 function Auth() {
@@ -13,50 +14,102 @@ function Auth() {
   const [authEmail, setAuthEmail] = useState("")
   const [authPassword, setAuthPassword] = useState("")
   const [authError, setAuthError] = useState("")
+  const [loading, setLoading] = useState({signIn: false, signUp:false})
 
   const [{user}, dispatch] = useContext(DataContext)
-  console.log(user)
+  const navigate = useNavigate()
+  // console.log(user)
 
-  const authHandler = async(e) => {
+  // const authHandler = async(e) => {
+
+  //   e.preventDefault()
+
+  //   try {
+  //     // console.log(e.target.name)
+  //     if (e.target.name === "signin") {
+  //       setLoading({ ...loading, signIn: true });
+  //       // firebase auth
+  //       const userSignInInfo = await signInWithEmailAndPassword(
+  //         auth,
+  //         authEmail,
+  //         authPassword
+  //       );
+  //       // console.log(userSignInInfo)
+  //       dispatch({
+  //         type: Type.SET_USER_KEY,
+  //         user: userSignInInfo.user,
+  //       });
+        
+  //     } else {
+  //       setLoading({ ...loading, signUp: true });
+
+  //       const userSignUpInfo = await createUserWithEmailAndPassword(
+  //         auth,
+  //         authEmail,
+  //         authPassword
+  //       );
+  //       // console.log(userSignUpInfo)
+  //       dispatch({
+  //         type: Type.SET_USER_KEY,
+  //         user: userSignUpInfo.user,
+  //       });
+
+
+  //     }
+  //   } catch (error) {
+  //     setAuthError(error.message);
+  //     // console.error("Authentication failed:", error.message);
+  //   } finally {
+  //     setLoading((prev) => ({ ...prev, signUp: false }));
+  //   }
+  // }
+
+  const authHandler = async (e) => {
+    e.preventDefault();
+    // safely convert to lowercase and trim whitespace for consistent action handling and compare it with signin
+    const action = e.target.name?.toLowerCase().trim();
+
+    // Determine which loading key to update
+    const dynamicLoadingKey = (action === "signin") ? "signIn" : "signUp";
+
     try {
-      e.preventDefault()
-        // console.log(e.target.name)
-        if(e.target.name === "signin"){
-          // firebase auth
-          const userSignInInfo = await signInWithEmailAndPassword(
-            auth,
-            authEmail,
-            authPassword
-          );
-          // console.log(userSignInInfo)
-            dispatch({
-              type: Type.SET_USER_KEY,
-              user: userSignInInfo.user
-            })
-    
-        }else{
+      // The brackets [ ] in [lodingKey] mean “use the value of this variable as the key name,” not the variable’s name itself.
+      setLoading((prev) => ({ ...prev, [dynamicLoadingKey]: true }));
 
-          const userSignUpInfo = await createUserWithEmailAndPassword(
-            auth,
-            authEmail,
-            authPassword
-          );
-          // console.log(userSignUpInfo)
-          dispatch({
-            type: Type.SET_USER_KEY,
-            user: userSignUpInfo.user,
-          });
+      // declare userInfo first without a value, then assign it inside the if-else blocks.
+      let userInfo;
+      if (dynamicLoadingKey === "signIn") {
+        userInfo = await signInWithEmailAndPassword(
+          auth,
+          authEmail,
+          authPassword
+        );
+      } else {
+        userInfo = await createUserWithEmailAndPassword(
+          auth,
+          authEmail,
+          authPassword
+        );
       }
-      
+
+      dispatch({
+        type: Type.SET_USER_KEY,
+        user: userInfo.user,
+      });
+      navigate("/")
     } catch (error) {
-      console.error("Authentication failed:", error.message);
+      setAuthError(error.message);
+      // finally statement always runs, whether an error occurred or not.
+    } finally {
+      setLoading((prev) => ({ ...prev, [dynamicLoadingKey]: false }));
     }
-  }
+  };
+  
 
   return (
     <section className={styles.login}>
       {/* logo*/}
-      <Link>
+      <Link to={"/"}>
         <img src={logo} alt="logo" />
       </Link>
 
@@ -88,10 +141,11 @@ function Auth() {
           <button
             type="button"
             onClick={authHandler}
-            name= "signin"
+            name="signin"
             className={styles.login_button}
           >
-            Sign in
+            {loading.signIn ? <ClipLoader size={15} color="#000" /> : "Sign In"}
+
           </button>
         </form>
 
@@ -110,8 +164,25 @@ function Auth() {
           name="signup"
           className={styles.login__registerButton}
         >
-          Create your Amazon Account
+          {loading.signUp ? (
+            <ClipLoader size={15} color="#000" />
+          ) : (
+            "Create your Amazon Account"
+          )}
         </button>
+
+        {authError && (
+          <small
+            style={{
+              color: "#B12704",
+              fontWeight: "600",
+              marginTop: "4px",
+              display: "block",
+            }}
+          >
+            {authError}
+          </small>
+        )}
       </div>
     </section>
   );
