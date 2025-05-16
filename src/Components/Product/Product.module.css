@@ -1,156 +1,203 @@
+
 .card__container {
-    width: 250px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    color: black;
-    text-decoration: none;
-    position: relative;
-    margin-top: 10px;
-    padding-top: 10px;
-    transition: transform 0.3s ease-in-out; 
+  width: 250px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px 20px 10px;
+  color: black;
+  text-decoration: none;
+  position: relative;
+  margin-top: 10px;
+  transition: transform 0.3s ease-in-out;
 }
 
-/* .container div {
-  height: auto !important;
-} */
+.card__container h3{
+  font-size: 1rem;
+}
 
 .card__container:hover .button {
-    display: block;
+  display: block;
 }
 
 .card__container img {
-    padding: 10px;
-    width: 100% !important;
-    height: 200px;
-    /* height: 100%; */
-    object-fit: contain;
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  padding: 10px;
 }
 
 .button {
-    display: none;
-    padding: 5px 10px;
-    font-weight: 700;
-    border: none;
-    cursor: pointer;
-    background-color: var(--primary-color);
-    width: 100%;
-    margin: 10px 0;
-    border-radius: 30px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    transition: background-color 0.3s;
+  display: none;
+  padding: 10px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 30px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: background-color 0.3s;
 }
 
 .button:hover {
-    background-color: var(--primary-shade);
+  background-color: var(--primary-shade);
 }
 
 .rating {
-    display: flex;
-    align-items: center;
-    padding: 10px 0;
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
 }
 
-/* Products Grid Container */
+/* Products Grid */
 .products_container {
-    /* width: 96%; */
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
-    max-width: 1450px;
-    gap: 50px;
-    justify-items: center;
-    margin: 100px auto 100px auto;
+  width: 85%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  max-width: 1450px;
+  gap: 20px;
+  justify-items: center;
+  margin: 70px auto;
 }
 
-.products_container section {
-    margin:0 auto;
+/* FLEX STYLE: Used when 'flex' prop is passed */
+.product__flexed {
+  display: flex;
+  gap: 40px;
+  width: 90%;
+  max-width: 1200px;
+  height: 50vh;
+  margin: 30px auto;
+  padding: 25px;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
 }
 
+.product__flexed h3 {
+  padding: 20px 0;
+}
 
+.product__flexed a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  flex-shrink: 0;
+}
+
+.product__flexed img {
+  width: 300px;
+  height: 250px;
+  object-fit: contain;
+}
+
+.product__flexed > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product__flexed .button {
+  display: block;
+  position: static;
+  width: 150px;
+  margin-top: 20px;
+  background-color: var(--primary-color);
+  font-weight: 600;
+  padding: 10px 0;
+  border: none;
+  border-radius: 30px;
+  transition: background-color 0.3s;
+}
 
 .product__flexed .button:hover {
-    background-color: var(--primary-shade) !important;
-  }
-  
-  /* Flex Layout (for special flex version) */
+  background-color: var(--primary-shade);
+}
+
+@media (max-width: 1024px) {
   .product__flexed {
-    display: flex;
-    gap: 40px;
-    width: 90%;
-    height: 50vh;
-    max-width: 1200px;
-    margin: 30px auto;
-    padding: 25px;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
-    background: white;
-  }
-  
-  .product__flexed h3 {
-    padding: 20px 0px;
-  }
-  
-  /* .product__flexed a {
-    display: flex;
-    justify-content: center;
+    flex-direction: column;
+    height: auto;
     align-items: center;
-    flex-shrink: 0;
-    width: 300px;
-  } */
-  
-  /* .product__flexed .button {
-    display: block ;
-    width: 200px !important;
-    margin-top: 20px !important;
-    background-color: var(--primary-color) !important;
-    border: none !important;
-    font-weight: 600 !important;
-    padding: 10px 0 !important;
-  } */
-   .product__flexed .button{
-    display: block;
-    position: static;
-    width: 150px;
-    margin-right: 40px;
-   }
+    text-align: center;
+  }
+
+  .product__flexed a {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 
   .product__flexed img {
-    width: 300px !important;
-    max-width: 300px;
+    width: 80%;
     height: auto;
-    /* height: 250px; */
- 
   }
-  
-  /* This targets the inner details div in flex layout */
+
   .product__flexed > div {
-  flex: 1;
-    display: flex;
-    flex-direction: column;
+    width: 100%;
   }
 
+  .product__flexed .button {
+    width: 70%;
+    margin: 20px auto 0 auto;
+  }
+}
 
-/* Responsive Design - Single Breakpoint */
 @media (max-width: 768px) {
-    .card__container {
-        width: 100%;
-        max-width: 300px; 
-    }
-    .products_container {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
-        gap: 20px;
-        margin: 5% auto;
-    }
+  .card__container {
+    width: 90%;
+    padding: 15px;
+  }
 
-    .button {
-        position: relative;
-        display: block;
-        opacity: 1;
-        bottom: unset; 
-    }
-    .product__flexed{
-        display: flex;
-        flex-direction: column;
-    }
+  .card__container h3 {
+    font-size: 0.95rem;
+  }
+
+  .card__container img {
+    height: 180px;
+  }
+
+  .products_container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+
+  .product__flexed {
+    gap: 20px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card__container {
+    padding: 10px;
+  }
+
+  .card__container h3 {
+    font-size: 0.9rem;
+  }
+
+  .card__container img {
+    height: 160px;
+  }
+
+  .button {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .product__flexed {
+    padding: 15px;
+  }
+
+  .product__flexed .button {
+    width: 90%;
+    font-size: 0.9rem;
+  }
+
+  .products_container {
+    gap: 10px;
+  }
 }
