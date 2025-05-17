@@ -1,7 +1,7 @@
 import LayOut from '../../Components/LayOut/LayOut'
 import styles from "./Payment.module.css"
 
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { DataContext } from '../../Components/DataProvider/DataProvider';
 import ProductCard from "../../Components/Product/ProductCard"
 
@@ -10,6 +10,7 @@ import {
   useElements,
   CardElement,
 } from "@stripe/react-stripe-js";
+import { GiSmallFire } from 'react-icons/gi';
 
 function Payment() {
 
@@ -21,9 +22,17 @@ function Payment() {
     return item.amount + amount;
   }, 0);
 
+  const [cardError, setCardError] = useState(null) //can also be empty string
+
   const stripe = useStripe();
   const elements = useElements();
 
+  const handleChange = (e) => {
+    // console.log(e)
+    e?.error?.message
+      ? setCardError(e.error.message)
+      : setCardError("");
+  }
 
   return (
     <LayOut>
@@ -69,6 +78,9 @@ function Payment() {
           <div className={styles.payment__card__container}>
             <div>
               <form action="">
+
+                {cardError && <small>{cardError}</small>}
+                
                 <CardElement onChange={handleChange()}/>
               </form>
             </div>
