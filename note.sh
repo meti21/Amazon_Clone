@@ -23,3 +23,10 @@ npm i react-router-dom
 
 # spinners
 npm install react-spinners --save
+
+# Firebase CLI command line interface
+npm install -g firebase-tools
+
+# install those in functions package.json not on the global package.json.so chanage directory to functions folder before installing
+#cd functions
+npm i express cors stripe dotenv

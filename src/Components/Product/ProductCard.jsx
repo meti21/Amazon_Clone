@@ -41,7 +41,7 @@ function ProductCard({ EachProduct, flex, renderDesc, addButton }) {
       <div>
         <h3>{title}</h3>
 
-        {renderDesc && <div>{description}</div>}
+        {renderDesc && <div >{description}</div>}
 
         <div className={styles.rating}>
           {/* rating */}

@@ -12,7 +12,7 @@ function SingleCategoryCard({data}) {
           <h2>{data?.title}</h2>
         </span>
 
-        <img src={data?.imgLink} alt="" />
+        <img src={data?.img} alt="" />
 
         <p>Shop now</p>
       </Link>
