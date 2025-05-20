@@ -56,6 +56,12 @@ Firebase initialization steps : during these steps you will see functions folder
 
 firebase login -> firebase init -> firbase init -> choose Functions -> press space -> press enter -> create a project or choose your existing one -> press enter -> if you choose existing project it will show you your projects -> press enter and wait -> select javascript -> select No for ESLint N (n and enter) -> yes for install dependencies
 
+To run: npm run serve
+
 sample of query on Thunder post request(this is given by the firebase on the terminal): http://127.0.0.1:5001/clone-e752e/us-central1/api
 sample of query on Thunder post request: http://127.0.0.1:5001/clone-e752e/us-central1/api/payment/create?total=200
+
+
+stripe for react.js documentation : https://docs.stripe.com/sdks/stripejs-react?locale=fr-FR
+
 

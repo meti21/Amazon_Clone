@@ -4,12 +4,14 @@ import styles from "./Payment.module.css"
 import { useContext, useState } from 'react';
 import { DataContext } from '../../Components/DataProvider/DataProvider';
 import ProductCard from "../../Components/Product/ProductCard"
+import CurrencyFormat from '../../Components/CurrencyFormat/CurrencyFormat';
 
 import {
   useStripe,
   useElements,
   CardElement,
 } from "@stripe/react-stripe-js";
+
 import { GiSmallFire } from 'react-icons/gi';
 
 function Payment() {
@@ -20,6 +22,10 @@ function Payment() {
   // this counts totalitems for the checkout
   const totalItems = basket?.reduce((amount, item) => {
     return item.amount + amount;
+  }, 0);
+
+  const total = basket.reduce((amount, item) => {
+    return item.price * item.amount + amount;
   }, 0);
 
   const [cardError, setCardError] = useState(null) //can also be empty string
@@ -72,16 +78,31 @@ function Payment() {
         <hr />
 
         {/* card form */}
-        <div>
+        <div className={styles.flex}>
           <h3>Payment method</h3>
 
           <div className={styles.payment__card__container}>
-            <div>
+            <div className={styles.payment__details}>
               <form action="">
+                {/* error */}
+                {cardError && (
+                  <small style={{ color: "red" }}>{cardError}</small>
+                )}
 
-                {cardError && <small>{cardError}</small>}
-                
-                <CardElement onChange={handleChange()}/>
+                {/* card element*/}
+                <CardElement onChange={handleChange} />
+
+                {/* price */}
+                <div className={styles.payment__price}>
+                  <div>
+                    <span style={{display: "flex" , gap: "10px"}}>
+                      <p>Total Order |</p> 
+                      <CurrencyFormat amount={total} />
+                    </span>
+                  </div>
+
+                  <button>Pay Now</button>
+                </div>
               </form>
             </div>
           </div>
