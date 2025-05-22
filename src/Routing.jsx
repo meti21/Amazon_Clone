@@ -6,6 +6,7 @@ import Orders from "./pages/Orders/Orders";
 import Cart from "./pages/Cart/Cart";
 import Results from "./pages/Results/Results";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
+import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -23,14 +24,32 @@ function Routing() {
         <Route path="/" element={<Landing />} />
         <Route path="/auth" element={<Auth />} />
         <Route
-          path="/payment"
+          path="/payments"
           element={
-            <Elements stripe={stripePromise}>
-              <Payment />
-            </Elements>
+            <ProtectedRoute
+              msg={"You must login to pay"}
+              redirect={"/payments"}
+            >
+              {/* children */}
+              <Elements stripe={stripePromise}>
+                <Payment />
+              </Elements>
+            </ProtectedRoute>
           }
         />
-        <Route path="/orders" element={<Orders />} />
+
+        <Route
+          path="/orders"
+          element={
+            <ProtectedRoute
+              msg={"Please log in to view your orders"}
+              redirect={"/orders"}
+            >
+              <Orders />
+            </ProtectedRoute>
+          }
+        />
+
         <Route path="/category/:categoryName" element={<Results />} />
         <Route path="/products/:productId" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
