@@ -1,25 +1,27 @@
-import LayOut from '../../Components/LayOut/LayOut'
-import styles from "./Payment.module.css"
+import LayOut from "../../Components/LayOut/LayOut";
+import styles from "./Payment.module.css";
 
-import { useContext, useState } from 'react';
-import { DataContext } from '../../Components/DataProvider/DataProvider';
-import ProductCard from "../../Components/Product/ProductCard"
-import CurrencyFormat from '../../Components/CurrencyFormat/CurrencyFormat';
+import { ClipLoader } from "react-spinners";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { DataContext } from "../../Components/DataProvider/DataProvider";
+import ProductCard from "../../Components/Product/ProductCard";
+import CurrencyFormat from "../../Components/CurrencyFormat/CurrencyFormat";
+import { axiosInstance } from "../../Api/axios";
+import { db } from "../../Utility/firebase";
 
-import {
-  useStripe,
-  useElements,
-  CardElement,
-} from "@stripe/react-stripe-js";
+import { doc, setDoc, collection } from "firebase/firestore";
 
-import { GiSmallFire } from 'react-icons/gi';
+import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+
+import { GiSmallFire } from "react-icons/gi";
+import { MdSportsGolf } from "react-icons/md";
 
 function Payment() {
-
-  const [{user,basket}] = useContext(DataContext)
+  const [{ user, basket }] = useContext(DataContext);
   // console.log(user)
 
-  // this counts totalitems for the checkout
+  // this counts total items for the checkout
   const totalItems = basket?.reduce((amount, item) => {
     return item.amount + amount;
   }, 0);
@@ -28,17 +30,75 @@ function Payment() {
     return item.price * item.amount + amount;
   }, 0);
 
-  const [cardError, setCardError] = useState(null) //can also be empty string
+  const [cardError, setCardError] = useState(null); //can also be empty string
+  const [processing, SetProcessing] = useState(false);
 
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     // console.log(e)
-    e?.error?.message
-      ? setCardError(e.error.message)
-      : setCardError("");
-  }
+    e?.error?.message ? setCardError(e.error.message) : setCardError("");
+  };
+
+  const handlePayment = async (e) => {
+    // to prevent refresh(if refresh, we will lose our state and mess everything)
+    e.preventDefault();
+
+    try {
+      SetProcessing(true);
+      // >>>>>>>>>>>>>>>>>>>>>1. backend (functions) ---> contact to the client secret
+      const response = await axiosInstance.post(
+        `/payment/create?total=${total * 100}`
+      ); //adding total bcuz index.js in functions expect totalprice
+
+      // console.log(response)
+      const clientSecret = response?.data?.clientSecret;
+
+      if (!clientSecret) {
+        throw new Error("Client secret not received.");
+      }
+
+      // >>>>>>>>>>>>>>>>>>>>>2. client side (react side confirmation using stripe) and this will give us the succeeded payment intent
+      const confirmation = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: { card: elements.getElement(CardElement) },
+      });
+      // console.log(confirmation)
+
+      const { paymentIntent } = confirmation;
+      // console.log(paymentIntent)
+
+      if (confirmation.error) {
+        // console.error("Payment error:", confirmation.error.message);
+        return;
+      }
+      // console.log("Payment successful:", confirmation);
+
+      // >>>>>>>>>>>>>>>>>>>>3. after the confirmation ---> save order on filestore database, clear basket
+
+      // modular Firebase SDK (v9+)
+      await setDoc(doc(db, "users", user?.uid, "orders", paymentIntent.id), {
+        basket,
+        amount: paymentIntent.amount,
+        created: paymentIntent.created,
+      });
+
+      SetProcessing(false);
+      navigate("/orders", { state: { msg: "You have placed a new Order" } });
+
+      //* older namespaced syntax
+      // await db.collection("users").doc(user.uid).collection("orders").doc(paymentIntent.id).set ({
+      //   basket:basket,
+      //   amount:paymentIntent.amount,
+      //   created:paymentIntent.created
+      // })
+    } catch (error) {
+      console.error("Payment error:", error);
+    } finally {
+      SetProcessing(false);
+    }
+  };
 
   return (
     <LayOut>
@@ -83,7 +143,7 @@ function Payment() {
 
           <div className={styles.payment__card__container}>
             <div className={styles.payment__details}>
-              <form action="">
+              <form onSubmit={handlePayment}>
                 {/* error */}
                 {cardError && (
                   <small style={{ color: "red" }}>{cardError}</small>
@@ -95,13 +155,24 @@ function Payment() {
                 {/* price */}
                 <div className={styles.payment__price}>
                   <div>
-                    <span style={{display: "flex" , gap: "10px"}}>
-                      <p>Total Order |</p> 
+                    <span style={{ display: "flex", gap: "10px" }}>
+                      <p>Total Order |</p>
                       <CurrencyFormat amount={total} />
                     </span>
                   </div>
 
-                  <button>Pay Now</button>
+                  <button type="submit">
+                    <div className={styles.loading}>
+                      {processing ? (
+                        <>
+                          <ClipLoader color="grey" size={12} />
+                          <span>Processing...</span>
+                        </>
+                      ) : (
+                        <span>Pay Now</span>
+                      )}
+                    </div>
+                  </button>
                 </div>
               </form>
             </div>
@@ -112,4 +183,4 @@ function Payment() {
   );
 }
 
-export default Payment
+export default Payment;

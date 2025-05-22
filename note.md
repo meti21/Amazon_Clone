@@ -28,18 +28,18 @@ git commit -m ""
 git push origin main
 git pull --rebase origin main
 
-*******************BackEND***************
+******************BackEND***************
 Firebase setup used in the videos mixes two different versions of the Firebase SDK: the modular SDK (v9+) and the namespaced/compat SDK (v8-style). This is technically valid with the compat layer, but it's not the most modern or recommended setup for new projects.so i changed it to modular SDK (v9+)
 
-firebase -> go to console -> choose your project -> build -> functions
+# firebase -> go to console -> choose your project -> build -> functions
 
 https://firebase.google.com Enabling firbase Authentication 
-    -> Authentication -> get started -> sign in method -> email and password -> enable email and password -> save
+#    -> Authentication -> get started -> sign in method -> email and password -> enable email and password -> save
 
 
 payment Front END
     https://stripe.com Stride for payment
-    start now -> sign up -> if it said sandbox at the left top cornor then its in test mode -> on the main home you can find public and secret key on right hand side under recommendation-> you can also see docs for more info
+#   start now -> sign up -> if it said sandbox at the left top cornor then its in test mode -> on the main home you can find public and secret key on right hand side under recommendation-> you can also see docs for more info
 
 
 https://firebase.google.com/docs/cli :Firebase command line interface(CLI) mine is V 14.4.0
@@ -48,13 +48,13 @@ https://firebase.google.com/docs/cli :Firebase command line interface(CLI) mine 
         -sudo npm install -g firebase-tools then enter your mac password
         -to check if firebase is globally install npm list -g.if its not in the list
 
-                -windows -> start menu -> write env -> choose edit envt variables -> click envt variables -> double click on the path -> make sure the path in your terminal(while you run the npm list -g command) is in the list(if its there there you're good togo to use firebase on the CLI but if not add it)
+#                -windows -> start menu -> write env -> choose edit envt variables -> click envt variables -> double click on the path -> make sure the path in your terminal(while you run the npm list -g command) is in the list(if its there there you're good togo to use firebase on the CLI but if not add it)
 
-                -MacOs -> If your global prefix path (e.g. /usr/local/bin or ~/.npm-global/bin) is in the PATH, then you're good!
+#                -MacOs -> If your global prefix path (e.g. /usr/local/bin or ~/.npm-global/bin) is in the PATH, then you're good!
 
 Firebase initialization steps : during these steps you will see functions folder
 
-firebase login -> firebase init -> firbase init -> choose Functions -> press space -> press enter -> create a project or choose your existing one -> press enter -> if you choose existing project it will show you your projects -> press enter and wait -> select javascript -> select No for ESLint N (n and enter) -> yes for install dependencies
+# firebase login -> firebase init -> firbase init -> choose Functions -> press space -> press enter -> create a project or choose your existing one -> press enter -> if you choose existing project it will show you your projects -> press enter and wait -> select javascript -> select No for ESLint N (n and enter) -> yes for install dependencies
 
 To run: npm run serve
 

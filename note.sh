@@ -34,3 +34,7 @@ npm i express cors stripe dotenv
 # Stripe's official libraries for integrating Stripe into a React application.
 # installs the React and JS Stripe SDKs, which you'll use in a React app to handle secure payment forms and interact with Stripe’s API.
 npm install --save @stripe/react-stripe-js @stripe/stripe-js
+
+
+#functions(backend)
+npm install axios
