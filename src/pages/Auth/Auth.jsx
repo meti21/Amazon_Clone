@@ -2,7 +2,7 @@ import styles from './Auth.module.css'
 
 import { Type } from '../../Utility/action.type';
 import { useState,useContext} from 'react';
-import { Link, useNavigate} from 'react-router-dom';
+import { Link, useNavigate, useLocation} from 'react-router-dom';
 import { auth } from '../../Utility/firebase';
 import {signInWithEmailAndPassword, createUserWithEmailAndPassword} from "firebase/auth"
 import {DataContext} from '../../Components/DataProvider/DataProvider'
@@ -18,7 +18,9 @@ function Auth() {
 
   const [{user}, dispatch] = useContext(DataContext)
   const navigate = useNavigate()
+  const navStateData = useLocation()
   // console.log(user)
+  // console.log(navStateData)
 
   // const authHandler = async(e) => {
 
@@ -96,7 +98,7 @@ function Auth() {
         type: Type.SET_USER_KEY,
         user: userInfo.user,
       });
-      navigate("/")
+      navigate(navStateData?.state?.redirect || "/")
     } catch (error) {
       setAuthError(error.message);
       // finally statement always runs, whether an error occurred or not.
@@ -116,6 +118,13 @@ function Auth() {
       {/* form */}
       <div className={styles.login__container}>
         <h1>Sign In</h1>
+
+        {navStateData?.state?.msg && (
+          <small className={styles.message}>
+            {/* the msg only displays if we were trying to pay without signin */}
+            {navStateData?.state?.msg}
+          </small>
+        )}
 
         <form action="">
           <div>
