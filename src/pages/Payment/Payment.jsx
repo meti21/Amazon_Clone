@@ -5,6 +5,7 @@ import { ClipLoader } from "react-spinners";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DataContext } from "../../Components/DataProvider/DataProvider";
+import {Type} from '../../Utility/action.type'
 import ProductCard from "../../Components/Product/ProductCard";
 import CurrencyFormat from "../../Components/CurrencyFormat/CurrencyFormat";
 import { axiosInstance } from "../../Api/axios";
@@ -18,7 +19,7 @@ import { GiSmallFire } from "react-icons/gi";
 import { MdSportsGolf } from "react-icons/md";
 
 function Payment() {
-  const [{ user, basket }] = useContext(DataContext);
+  const [{ user, basket}, dispatch] = useContext(DataContext);
   // console.log(user)
 
   // this counts total items for the checkout
@@ -50,7 +51,7 @@ function Payment() {
       SetProcessing(true);
       // >>>>>>>>>>>>>>>>>>>>>1. backend (functions) ---> contact to the client secret
       const response = await axiosInstance.post(
-        `/payment/create?total=${total * 100}`
+        `/payments/create?total=${total * 100}`
       ); //adding total bcuz index.js in functions expect totalprice
 
       // console.log(response)
@@ -83,6 +84,9 @@ function Payment() {
         amount: paymentIntent.amount,
         created: paymentIntent.created,
       });
+
+      // Empty the basket
+      dispatch({ type: Type.EMPTY_BASKET_KEY });
 
       SetProcessing(false);
       navigate("/orders", { state: { msg: "You have placed a new Order" } });

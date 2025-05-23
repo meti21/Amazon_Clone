@@ -75,7 +75,7 @@ function Auth() {
     const dynamicLoadingKey = (action === "signin") ? "signIn" : "signUp";
 
     try {
-      // The brackets [ ] in [lodingKey] mean “use the value of this variable as the key name,” not the variable’s name itself.
+      // The brackets [ ] in [loadingKey] mean “use the value of this variable as the key name,” not the variable’s name itself.
       setLoading((prev) => ({ ...prev, [dynamicLoadingKey]: true }));
 
       // declare userInfo first without a value, then assign it inside the if-else blocks.

@@ -20,7 +20,7 @@ app.get("/", (req,res) => {
 })
 
 // request related to payment
-app.post("/payment/create", async(req,res) => {
+app.post("/payments/create", async(req,res) => {
     
   // create a Stripe PaymentIntent with a specified amount, and send its client secret to the frontend so the user can complete the payment.
   const total = parseInt(req.query.total);
