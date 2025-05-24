@@ -1,32 +1,36 @@
-import React from 'react'
-import styles from "./Header.module.css";
+// import React from "react";
+import styles from './Header.module.css'
+import { IoMdMenu } from "react-icons/io";
+import { Navbar, Nav } from "react-bootstrap";
 
-import { AiOutlineMenu } from "react-icons/ai";
-
-function LowerHeader() {
+const LowerHeader = () => {
   return (
-    <div className={styles.lower__container}>
-      <ul>
-        <li>
-            <AiOutlineMenu />
-          <p>
-            All
-          </p>
-        </li>
-        <li>
-          <p>Today's Deals</p>
-        </li>
-        <li>
-          <p>Costumer Service</p>
-        </li>
-        <li>
-          <p>Registry</p>
-        </li>
-        <li>Gift Cards</li>
-        <li>Sell</li>
-      </ul>
-    </div>
+    <Navbar expand="lg" className={styles.lower__container} variant="dark">
+      <div className={styles.lower__nav_wrapper}>
+        <Navbar.Toggle aria-controls="basic-navbar-nav"  />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className={styles.lower__nav}>
+            <Nav.Link href="#" className={`${styles.nav_item} ${styles.all_item}`}>
+              <IoMdMenu />
+              <span>All</span>
+            </Nav.Link>
+            <Nav.Link href="#" className={styles.nav_item}>Today's Deals</Nav.Link>
+            <Nav.Link href="#" className={styles.nav_item}>Customer Service</Nav.Link>
+            <Nav.Link href="#" className={styles.nav_item}>Registry</Nav.Link>
+            <Nav.Link href="#" className={styles.nav_item}>Gift ideas</Nav.Link>
+            <Nav.Link href="#" className={styles.nav_item}>Sell</Nav.Link>
+            <Nav.Link href="#" className={styles.nav_item}>Prime</Nav.Link>
+            <Nav.Link href="#" className={styles.nav_item}>New Releases</Nav.Link>
+            <Nav.Link href="#" className={styles.nav_item}>Electronics</Nav.Link>
+            <Nav.Link href="#" className={styles.nav_item}>Books</Nav.Link>
+            <Nav.Link href="#" className={`${styles.nav_item} ${styles.promo_item}`}>
+              {/* Another Simple Favor - Watch now */}
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </div>
+    </Navbar>
   );
-}
+};
 
-export default LowerHeader
+export default LowerHeader;
