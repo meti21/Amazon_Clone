@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './Header.module.css'
 import LowerHeader from './LowerHeader';
 
@@ -8,19 +7,23 @@ import {useContext} from 'react'
 import { BsSearch } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
 import { SlLocationPin } from "react-icons/sl";
+
 import { DataContext } from '../DataProvider/DataProvider';
-import {auth} from "../../Utility/firebase"
+import {auth} from "../../Utility/firebase";
 
 function Header() {
-  const [{ user,basket }, dispatch] = useContext(DataContext);
-  //instead of state.basket we can say {basket}
-  // distructure the state and we can get the value of items in the basket
+  const [{ user, basket }] = useContext(DataContext);
+  // is the same with
+  // const [state, dispatch] = useContext(DataContext);
+  // const user = state.user;
+  // const basket = state.basket;
+
   // console.log(basket)
   // console.log(basket.length)  //how many different products are in the cart
-  //this doesnt consider the quantity of each item but rather
+  //this doesn't consider the quantity of each item
 
-  const totalItems = basket?.reduce((amount, item) => {
-    return item.amount + amount;
+  const totalItems = basket?.reduce((accumulator, currentItem) => {
+    return currentItem.amount + accumulator;
   }, 0);
   // console.log(totalItems)  //how many total items (including multiples) are in the cart
 
@@ -28,6 +31,7 @@ function Header() {
     <section className={styles.fixed}>
       <section>
         <div className={styles.header__container}>
+
           {/* logo section*/}
           <div className={styles.logo__container}>
             <Link to="/">
@@ -64,7 +68,7 @@ function Header() {
           <div className={styles.order__container}>
             <Link to="" className={styles.language}>
               <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Canada_%28Pantone%29.svg/330px-Flag_of_Canada_%28Pantone%29.svg.png"
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Canada_%28Pantone%29.svg/330px-Flag_of_Canada_%28Pantone%29.svg.png"
                 alt=""
               />
               <select>
