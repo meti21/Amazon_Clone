@@ -20,18 +20,18 @@ function ProductDetail() {
       .get(`${productUrl}/products/${productId}`)
       .then((res) => {
         setProduct(res.data);
+
       })
       .catch((err) => {
-        console.log(`Error getting the Detailes of the product:`, err);
+        console.log(`Error getting the Details of the product:`, err);
       }).finally(() => {
         setIsLoading(false) //  End loading (runs regardless of success/failure)...instead of writing setIsLoading(false) in both try and catch we can use finally
       })
       
   }, []);
+  
   return (
     <LayOut>
-      {/* we're not just writing HTML here — we're using JavaScript logic (a ternary operator) to conditionally render one of two components so we have to put them in {} */}
-      
       {isLoading ? <Loader /> : <ProductCard EachProduct={product} flex={true} renderDesc={true} addButton={true}/>}
     </LayOut>
   );

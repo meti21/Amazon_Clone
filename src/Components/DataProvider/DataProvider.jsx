@@ -1,12 +1,13 @@
-import React,{ createContext,useReducer } from "react"
-
-// import { initialState, reducer } from "../../Utility/reducer";
+import { createContext,useReducer } from "react"
 
 export const DataContext = createContext()
+// Creates a context object we can use across components and It gives .Provider and .Consumer.
+// Any component can now useContext(DataContext) to access and update global state.
 
 export const DataProvider = ({ children, reducer, initialState }) => {
   return (
-    // useReducer returns state and dispatch,so calling useReducer function will make state and dispatch to be available here.so that we can implement actions using dispatch and we can take anything from the state by distructuring
+    // const [state, dispatch] = useReducer(reducer, initialState)
+    
     <DataContext.Provider value={useReducer(reducer, initialState)}>
       {children}
     </DataContext.Provider>

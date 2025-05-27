@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import Rating from "@mui/material/Rating";
 import CurrencyFormat from '../CurrencyFormat/CurrencyFormat';
 import {Link} from 'react-router-dom';
@@ -8,10 +8,11 @@ import { DataContext } from "../DataProvider/DataProvider";
 import styles from './Product.module.css'
 
 function ProductCard({ EachProduct, flex, renderDesc, addButton }) {
+  
   const { image, title, id, rating, price, description } = EachProduct;
 
   const [state, dispatch] = useContext(DataContext);
-  // console.log(state)
+  console.log(state)
 
   const addToCart = () => {
     dispatch({
@@ -44,6 +45,7 @@ function ProductCard({ EachProduct, flex, renderDesc, addButton }) {
         {renderDesc && <div >{description}</div>}
 
         <div className={styles.rating}>
+
           {/* rating */}
           <Rating value={rating?.rate} precision={0.1} readOnly />
 

@@ -20,3 +20,13 @@
   .orders__container div {
     height: auto !important;
   }
+
+  .info {
+    padding: 20px;
+    background-color: #d1ecf1; /* light blue info color */
+    color: #0c5460; /* dark blue text */
+    border: 1px solid #bee5eb;
+    border-radius: 4px;
+    padding: 20px;
+  }
+  

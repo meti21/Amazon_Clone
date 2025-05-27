@@ -65,3 +65,6 @@ sample of query on Thunder post request: http://127.0.0.1:5001/clone-e752e/us-ce
 stripe for react.js documentation : https://docs.stripe.com/sdks/stripejs-react?locale=fr-FR
 
 
+>>>>>>>>>>>>>>>>>>Deployment
+
+change your firebase plan to Blaze(if not you will face an error) --> open your function in terminal --> firebase login command --> npm run deploy -->  on your fire base select functions --> wait --> in firebase-debug folder under functions the minInstanceCount:null so we have to fix it by adding setGlobalOptions({maxInstances:10}) inside index.js right under express(modular v9 might not throw an error for this) --> after the deploy completed open the function URL link and you have to see the success message you wrote for get request --> copy THE function URL link and make it the baseURL in axios.js(frontend)

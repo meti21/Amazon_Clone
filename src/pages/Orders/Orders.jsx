@@ -56,7 +56,7 @@ function Orders() {
 
           {/* if accessed by another authenticated user the following will display */}
           {orders?.length == 0 && (
-            <div style={{ padding: "20px" }}>
+            <div className={styles.info}>
               You don't have orders yet.
             </div>
           )}

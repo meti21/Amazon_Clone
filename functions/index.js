@@ -7,9 +7,12 @@ dotenv.config()
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 const cors = require("cors");
-const express = require("express")
+const express = require("express");
+const { setGlobalOptions } = require("firebase-functions/options");
 
 const app = express()
+
+setGlobalOptions({maxInstances:10})
 // It allows any frontend (React, etc.) to make requests to our backend
 app.use(cors({origin:true}))
 

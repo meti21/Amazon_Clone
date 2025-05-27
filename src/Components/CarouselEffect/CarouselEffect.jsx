@@ -1,4 +1,3 @@
-import React from 'react'
 import { Carousel } from 'react-responsive-carousel'
 import { CarouselImages } from "./resource/data";
 
@@ -17,8 +16,8 @@ function CarouselEffect() {
         showIndicators={false} // Hides the small navigation dots usually shown at the bottom
         showThumbs={false} // Hides the thumbnail previews below the carousel
       >
-        {CarouselImages?.map((currentimageLink, i) => {
-          return <img key={i} src={currentimageLink} alt="img" />;
+        {CarouselImages?.map((currentImageLink, i) => {
+          return <img key={i} src={currentImageLink} alt="img" />;
         })}
       </Carousel>
 

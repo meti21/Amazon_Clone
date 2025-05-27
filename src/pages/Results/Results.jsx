@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Results.module.css";
 import LayOut from "../../Components/LayOut/LayOut";
 import { useParams } from "react-router-dom";
@@ -11,7 +11,7 @@ function Results() {
   const [result, setResult] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  //use {} to distructure bcuz the result from useParams is an object
+  //use {} to destructure bcuz the result from useParams is an object
   const { categoryName } = useParams();
   // console.log(useParams())
 

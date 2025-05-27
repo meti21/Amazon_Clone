@@ -1,20 +1,24 @@
 import { Type } from "./action.type";
 
 // const [state, dispatch] = useReducer(reducer, initialState)
-
+//(action.item.id) refers id of the incoming item  and (item.id) refers existing item in the basket.
 export const initialState = {
   basket: [],
   user: null,
 };
 
 export const reducer = (state, action) => {
+
+
+  console.log(state.basket);
   switch (action.type) {
-    //Type.ADD_TO_BASKET_KEY = ADD_TO_BASKET from action.type.js
     case Type.ADD_TO_BASKET_KEY:
-      //check if the item exists existing item will return true(here basket is array so we can use .find)
+      // Checks if the item is already in the basket and return a boolean
       const existingItem = state.basket.find(
         (item) => item.id === action.item.id
       );
+
+      // If not found, it adds the item with a quantity amount: 1.
       if (!existingItem) {
         return {
           ...state,
@@ -22,6 +26,7 @@ export const reducer = (state, action) => {
         };
       } else {
         const updatedBasket = state.basket.map((item) =>
+          // to identify which specific item in the basket should have its amount increased.
           item.id === action.item.id
             ? { ...item, amount: item.amount + 1 }
             : item
@@ -40,6 +45,7 @@ export const reducer = (state, action) => {
             amount: newBasket[index].amount - 1,
           };
         } else {
+          // splice(startIndex, deleteCount);
           newBasket.splice(index, 1);
         }
       }

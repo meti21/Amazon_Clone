@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import  { useContext } from "react";
 import LayOut from "../../Components/LayOut/LayOut";
 import { DataContext } from "../../Components/DataProvider/DataProvider";
 import ProductCard from "../../Components/Product/ProductCard";
@@ -10,6 +10,7 @@ import styles from "./Cart.module.css";
 import { MdDelete } from "react-icons/md";
 import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
+
 import { Alert } from "react-bootstrap";
 
 function Cart() {
@@ -19,7 +20,7 @@ function Cart() {
     return item.price * item.amount + amount;
   }, 0);
 
-  //inrement function
+  //increment function
   const increment = (item) => {
     dispatch({
       type: Type.ADD_TO_BASKET_KEY,
