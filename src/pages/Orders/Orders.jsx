@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import styles from "./orders.module.css";
+import styles from "./Orders.module.css";
 import LayOut from "../../Components/LayOut/LayOut";
 import ProductCard from "../../Components/Product/ProductCard";
 
