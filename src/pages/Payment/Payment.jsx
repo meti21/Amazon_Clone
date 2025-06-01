@@ -154,18 +154,25 @@ function Payment() {
                 )}
 
                 {/* card element*/}
-                <CardElement onChange={handleChange} />
+                <CardElement
+                  className={styles.cardElement}
+                  onChange={handleChange}
+                />
 
                 {/* price */}
                 <div className={styles.payment__price}>
                   <div>
                     <span style={{ display: "flex", gap: "10px" }}>
-                      <p>Total Order |</p>
-                      <CurrencyFormat amount={total} />
+                      <p>Total Order</p> | <CurrencyFormat amount={total} />
                     </span>
                   </div>
 
-                  <button type="submit">
+                  <button
+                    type="submit"
+                    disabled={
+                      processing ||total <= 0
+                    }
+                  >
                     <div className={styles.loading}>
                       {processing ? (
                         <>
