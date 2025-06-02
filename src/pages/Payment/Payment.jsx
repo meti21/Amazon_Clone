@@ -15,8 +15,6 @@ import { doc, setDoc, collection } from "firebase/firestore";
 
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 
-import { GiSmallFire } from "react-icons/gi";
-import { MdSportsGolf } from "react-icons/md";
 
 function Payment() {
   const [{ user, basket}, dispatch] = useContext(DataContext);
@@ -71,7 +69,7 @@ function Payment() {
       // console.log(paymentIntent)
 
       if (confirmation.error) {
-        // console.error("Payment error:", confirmation.error.message);
+        console.error("Payment error:", confirmation.error.message);
         return;
       }
       // console.log("Payment successful:", confirmation);
@@ -88,7 +86,7 @@ function Payment() {
       // Empty the basket
       dispatch({ type: Type.EMPTY_BASKET_KEY });
 
-      SetProcessing(false);
+      // SetProcessing(false);
       navigate("/orders", { state: { msg: "You have placed a new Order" } });
 
       //* older namespaced syntax
@@ -148,6 +146,7 @@ function Payment() {
           <div className={styles.payment__card__container}>
             <div className={styles.payment__details}>
               <form onSubmit={handlePayment}>
+
                 {/* error */}
                 {cardError && (
                   <small style={{ color: "red" }}>{cardError}</small>

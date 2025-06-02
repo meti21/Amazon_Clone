@@ -3,6 +3,7 @@ import styles from './Auth.module.css'
 import { Type } from '../../Utility/action.type';
 import { useState,useContext} from 'react';
 import { Link, useNavigate, useLocation} from 'react-router-dom';
+// Imports the configured Firebase auth object
 import { auth } from '../../Utility/firebase';
 import {signInWithEmailAndPassword, createUserWithEmailAndPassword} from "firebase/auth"
 import {DataContext} from '../../Components/DataProvider/DataProvider'
@@ -18,53 +19,9 @@ function Auth() {
 
   const [{user}, dispatch] = useContext(DataContext)
   const navigate = useNavigate()
+
   const navStateData = useLocation()
-  // console.log(user)
-  // console.log(navStateData)
 
-  // const authHandler = async(e) => {
-
-  //   e.preventDefault()
-
-  //   try {
-  //     // console.log(e.target.name)
-  //     if (e.target.name === "signin") {
-  //       setLoading({ ...loading, signIn: true });
-  //       // firebase auth
-  //       const userSignInInfo = await signInWithEmailAndPassword(
-  //         auth,
-  //         authEmail,
-  //         authPassword
-  //       );
-  //       // console.log(userSignInInfo)
-  //       dispatch({
-  //         type: Type.SET_USER_KEY,
-  //         user: userSignInInfo.user,
-  //       });
-        
-  //     } else {
-  //       setLoading({ ...loading, signUp: true });
-
-  //       const userSignUpInfo = await createUserWithEmailAndPassword(
-  //         auth,
-  //         authEmail,
-  //         authPassword
-  //       );
-  //       // console.log(userSignUpInfo)
-  //       dispatch({
-  //         type: Type.SET_USER_KEY,
-  //         user: userSignUpInfo.user,
-  //       });
-
-
-  //     }
-  //   } catch (error) {
-  //     setAuthError(error.message);
-  //     // console.error("Authentication failed:", error.message);
-  //   } finally {
-  //     setLoading((prev) => ({ ...prev, signUp: false }));
-  //   }
-  // }
 
   const authHandler = async (e) => {
     e.preventDefault();
@@ -110,6 +67,7 @@ function Auth() {
 
   return (
     <section className={styles.login}>
+
       {/* logo*/}
       <Link to={"/"}>
         <img src={logo} alt="logo" />

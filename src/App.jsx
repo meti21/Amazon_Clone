@@ -1,4 +1,3 @@
-import './App.css'
 import Routing from './Routing'
 import { useContext,useEffect } from 'react'
 import { DataContext } from './Components/DataProvider/DataProvider'
@@ -21,11 +20,6 @@ function App() {
 
   return (
     <>
-      {/* <Header/>
-      <CarouselEffect/>
-      <Category/>
-      <Product/> */}
-
       <Routing />
     </>
   );

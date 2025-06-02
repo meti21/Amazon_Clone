@@ -10,13 +10,12 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 
-// Your web app's Firebase configuration
 // this is specific and unique for the project
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  // Path to your Firebase Storage bucket(The Firebase project's file storage container)
+  // Path to our Firebase Storage bucket(The Firebase project's file storage container)
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
   // Used for push notifications / Firebase Cloud Messaging
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
@@ -24,11 +23,11 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-// This starts your Firebase app using the config you gave. You must do this before using Firebase features (like auth or database).
+// This starts our Firebase app using the config we gave. You must do this before using Firebase features (like auth or database).
 const app = initializeApp(firebaseConfig);
 // auth: we can now import this anywhere to handle login, sign-up, logout, etc.
 export const auth = getAuth(app);
-// db: You can import this to read/write from Firestore.
+// Enables reading/writing to Firestore database
 export const db = getFirestore(app);
 
 

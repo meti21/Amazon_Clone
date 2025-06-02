@@ -32,7 +32,7 @@ function Orders() {
 
       // Subscribe to realtime updates
       const unsubscribe = onSnapshot(ordersQuery, (snapshot) => {
-        console.log(snapshot);
+        // console.log(snapshot);
         setOrders(
           snapshot.docs.map((doc) => ({
             id: doc.id,

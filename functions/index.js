@@ -1,4 +1,6 @@
+// This lets Firebase handle HTTP requests
 const {onRequest} = require("firebase-functions/v2/https");
+// Brings in Firebase's logging tool. we can use logger.info() instead of console.log() for better debugging in Firebase.
 const logger = require("firebase-functions/logger");
 
 const dotenv = require("dotenv");
@@ -8,10 +10,11 @@ const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 const cors = require("cors");
 const express = require("express");
+// set options for Firebase Functions (like how many instances can run).
 const { setGlobalOptions } = require("firebase-functions/options");
 
 const app = express()
-
+// Limits the number of parallel running copies of our function and Prevents API abuse and  database overload
 setGlobalOptions({maxInstances:10})
 // It allows any frontend (React, etc.) to make requests to our backend
 app.use(cors({origin:true}))

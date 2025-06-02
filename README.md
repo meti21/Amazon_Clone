@@ -1,111 +1,273 @@
-# 🛒 Amazon Clone (Frontend)
+# Amazon Clone
 
-A fully responsive Amazon clone built with **React**. This is the frontend-only version of the app, mimicking core functionalities like product browsing, search, cart management, and user interface similar to Amazon.
+A full-stack e-commerce web application that replicates core Amazon functionality, built with modern web technologies and deployed on cloud platforms.
 
-## 📸 Screenshots
+## 🚀 Live Demo
 
-![Home Page](./screenshots/home.png)
-![Product Page](./screenshots/product.png)
-![Cart Page](./screenshots/cart.png)
+**Frontend**: [Deployed on Netlify](https://meti-amazon-clone.netlify.app/)
+**Backend**: Powered by Firebase
 
-## 🚀 Features
+## 📋 Table of Contents
 
-- ✅ Browse products
-- 🔍 Search functionality
-- 🛒 Add to Cart / Remove from Cart
-- 💰 View subtotal in cart
-- 📱 Fully responsive layout (mobile-first)
-- 📦 Simulated product data (JSON or API)
-- 🔄 React Router for page navigation
+- Features
+- Tech Stack
+- Architecture
+- Installation
+- Environment Variables
+- Usage
+- Deployment
+- API Documentation
+- Contributing
+- License
 
-> Authentication, payment, and backend integration can be added separately.
+## ✨ Features
 
----
+- **User Authentication**: Sign up, login, and logout functionality
+- **Product Catalog**: Browse products with search and filtering capabilities
+- **Shopping Cart**: Add/remove items, update quantities
+- **Checkout Process**: Secure payment processing
+- **Order Management**: View order history and tracking
+- **User Profile**: Manage personal information and addresses
+- **Admin Panel**: Product management and inventory control
+- **Responsive Design**: Optimized for desktop and mobile devices
+- **Real-time Updates**: Live inventory and order status updates
 
 ## 🛠 Tech Stack
 
-- **Frontend:** React, JavaScript, React Router
-- **Styling:** Tailwind CSS / CSS Modules / Styled-Components *(adjust based on your setup)*
-- **State Management:** useState / useReducer / Redux *(mention what you use)*
-- **Data:** Static JSON or integrated API
+### Frontend
+- **Framework**: React.js
+- **Styling**: CSS
+- **State Management**:Context API 
+- **HTTP Client**: Axios
+- **Deployment**: Netlify
 
----
-## 📦 Installation
+### Backend
+- **Platform**: Firebase
+- **Database**: Firestore
+- **Authentication**: Firebase Auth
+- **Storage**: Firebase Storage
+- **Functions**: Firebase Cloud Functions
 
-Follow the steps below to get the project running locally:
+### Additional Tools
+- **Version Control**: Git & GitHub
+- **Package Manager**: npm 
+- **Build Tool**: Vite
 
+## 🏗 Architecture
+
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Frontend      │    │   Firebase      │    │   External      │
+│   (Netlify)     │◄──►│   Backend       │◄──►│   Services      │
+│                 │    │                 │    │                 │
+│ • React App     │    │ • Firestore DB  │    │ • Payment API   │
+│ • User Interface│    │ • Auth Service  │    │                 |
+│ • State Mgmt    │    │ • Cloud Funcs   │    │                 |
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+```
+
+## 🚀 Installation
+
+### Prerequisites
+- Node.js (v14 or higher)
+- npm
+- Firebase account
+- Netlify account
+
+### Clone the Repository
 ```bash
-# 1. Clone the repository
-git clone https://github.com/your-username/amazon-clone.git
-cd amazon-clone
+git clone https://github.com/meti21/Amazon_Clone.git
+cd AmazonClone
+```
 
-# 2. Install dependencies
+### Install Dependencies
+```bash
+# Install frontend dependencies
 npm install
 
-# 3. Start the development server
-npm start
+```
 
----
-
-## 📜 Available Scripts
-
-In the project directory, you can run:
+### Firebase Setup
+1. Create a new Firebase project at [Firebase Console](https://console.firebase.google.com/)
+2. Enable Authentication, Firestore Database, and Storage
+3. Download the Firebase config file
+4. Initialize Firebase in your project:
 
 ```bash
-# Run the app in development mode
-npm start
+npm install -g firebase-tools
+firebase login
+firebase init
+```
 
-# Build the app for production
+## 🔧 Environment Variables
+
+Create a `.env` file in your root directory with the following Firebase configuration:
+
+```env
+# Firebase Configuration
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_project_id.firebasestorage.app
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+
+# Stripe Payment Integration
+VITE_STRIPE_PUBLIC_KEY=your_stripe_public_key
+```
+
+> **Note**: This project uses Vite environment variables (prefixed with `VITE_`). Make sure to get your Firebase config values from your Firebase Console under Project Settings.
+
+### Firebase Services Used
+- **Authentication**: User sign-up, login, and logout
+- **Firestore Database**: Product data, user profiles, and order management
+- **Storage**: Product images and user uploads
+- **Functions**: Server-side logic and payment processing
+
+## 💻 Usage
+
+### Prerequisites
+- Node.js (v16 or higher)
+- npm package manager
+- Firebase account with project setup
+- Stripe account for payment processing
+
+### Development
+```bash
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+
+# The app will open at http://localhost:5173
+```
+
+### Firebase Setup
+1. Create a Firebase project at [Firebase Console](https://console.firebase.google.com/)
+2. Enable Authentication, Firestore Database, Storage, and Functions
+3. Copy your Firebase config from Project Settings
+4. Update your `.env` file with the Firebase configuration values
+
+### Stripe Setup
+1. Create a Stripe account at [Stripe Dashboard](https://dashboard.stripe.com/)
+2. Get your publishable key from the API keys section
+3. Add your Stripe public key to the `.env` file
+
+### Building for Production
+```bash
+# Create production build
 npm run build
 
-# Launch the test runner
-npm test
+# Preview production build locally
+npm run preview
 
-# Lint the codebase (if configured)
-npm run lint
+# The preview will be available at http://localhost:4173
+```
 
-## 🧩 Customization
+## 🚀 Deployment
 
-You can personalize or extend the app easily:
+### Frontend Deployment (Netlify)
+1. **Build Setup**:
+   - Build command: `npm run build`
+   - Publish directory: `dist`
+   - Node version: 18 or higher
 
-- Update product data in `src/data/products.js` or your preferred structure.  
-- Replace styling with your own CSS or framework.  
-- Connect to a backend (e.g., Firebase, Express, etc.).  
-- Add features like product filtering, user reviews, or wishlists.  
+2. **Environment Variables** (Add these in Netlify Dashboard):
+   ```
+   VITE_FIREBASE_API_KEY=your_firebase_api_key
+   VITE_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
+   VITE_FIREBASE_PROJECT_ID=your_project_id
+   VITE_FIREBASE_STORAGE_BUCKET=your_project_id.firebasestorage.app
+   VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+   VITE_FIREBASE_APP_ID=your_app_id
+   VITE_STRIPE_PUBLIC_KEY=your_stripe_public_key
+   ```
 
+3. **Deployment Steps**:
+   - Connect your GitHub repository to Netlify
+   - Set build command: `npm run build`
+   - Set publish directory: `dist`
+   - Add environment variables in Netlify dashboard
+   - Enable automatic deployments on push to main branch
 
-## 🚧 Future Improvements
+### Backend Deployment (Firebase)
+```bash
+# Install Firebase CLI globally
+npm install -g firebase-tools
 
-- 🔐 Add user authentication (with Firebase, Auth0, or custom JWT)  
-- 💳 Integrate payment gateway (Stripe or PayPal)  
-- 🗃 Connect to a backend (Node.js/Express + MongoDB/PostgreSQL)  
-- 📝 Add product ratings and customer reviews  
-- 🌐 Enable internationalization (i18n)  
+# Login to Firebase
+firebase login
 
----
+# Initialize Firebase in your project
+firebase init
 
+# Deploy Firebase Functions and Firestore rules
+firebase deploy
+
+# Deploy only functions
+firebase deploy --only functions
+
+# Deploy only Firestore rules and indexes
+firebase deploy --only firestore
+```
+
+### Deployment Checklist
+- [ ] Firebase project configured with Authentication, Firestore, Storage, and Functions
+- [ ] Stripe account set up with API keys
+- [ ] Environment variables added to Netlify
+- [ ] Firebase security rules configured
+- [ ] Netlify build settings configured
+- [ ] Domain configured (if using custom domain)
+
+## 🔥 Firebase Configuration
+
+Your Firebase setup includes:
+
+```javascript
+// Firebase services configuration
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+};
+
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+```
 ## 🤝 Contributing
 
-Contributions are welcome!
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-To contribute:
+## 📝 License
 
-1. Fork the repository  
-2. Create your feature branch: `git checkout -b feature/YourFeature`  
-3. Commit your changes: `git commit -m 'Add your feature'`  
-4. Push to your branch: `git push origin feature/YourFeature`  
-5. Open a pull request  
+This project is licensed under the General  License
 
-## 📄 License
+## 🙏 Acknowledgments
 
-This project is licensed under the [General License](LICENSE).
+- Design inspiration from Amazon
+- Firebase for backend services
+- Netlify for frontend hosting
+- Open source libraries and tools used
+
+## 📧 Contact
+
+Meti Tesfamichael
+
+Project Link: [(https://github.com/meti21/Amazon_Clone.git)]
 
 ---
 
-## 📬 Contact
-
-Created with ❤️ by [Meti Tesfamichael](https://github.com/meti21)  
-
----
-
-#Live Demo
+⭐ Don't forget to give the project a star if you found it helpful!
